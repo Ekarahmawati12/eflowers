@@ -57,7 +57,7 @@ class AdminController extends Controller
         $image->resize(124, 124, function ($constraint) {
             $constraint->aspectRatio();
         });
-        $image->save($destinationPath.'/'. $imagename);
+        $image->save($destinationPath .'/'. $imagename);
         
     }
 
@@ -110,5 +110,173 @@ class AdminController extends Controller
         $products = Product::orderBy('created_at', 'DESC')->paginate(10);
         return view('admin.products' , compact('products'));
     }
+    
+    public function products_add()
+    {
+        $categories = Category::select('id','name')->orderBY('name')->get();
+        return view('admin.products-add', compact('categories'));
 
+    }
+
+    public function products_store(Request $request)
+    {
+        $request->validate([
+            'name' =>'required',
+            'slug' =>'required|unique:products,slug',
+            'short_description' =>'required',
+            'description' =>'required',
+            'regular_price' =>'required',
+            'stock_status' =>'required',
+            'featured' =>'required',
+            'image' =>'required|mimes:jpg,png,jpeg|max:2048',
+            'category_id' =>'required'
+
+
+        ]);
+        $products = new Product();
+        $products->name = $request->name;
+        $products->slug = Str::slug($request->name);
+        $products->short_description = $request->short_description ;
+        $products->description = $request->description ;
+        $products->regular_price = $request->regular_price;
+        $products->stock_status = $request->stock_status;
+        $products->featured = $request->featured;
+        $products->image = $request->image;
+        $products->category_id = $request->category_id;
+
+        $current_timestamp = Carbon::now()->timestamp;
+
+
+        if($request->hasFile('image'))
+        {
+            $image = $request->file('image');
+            $imageName =   $current_timestamp . '.' . $image->extension();
+            $this-> GenerateProductsThumbnailImage($image, $imageName);
+            $products->image = $imageName;
+        }
+
+        $gallery_arr = array();
+        $gallery_images ="";
+        $counter = 1;
+
+        if($request->hasFile('images'))
+        {
+            $allowedfileExtion = ['jpg', 'png','jpeg'];
+            $files = $request->file('images');
+            foreach($files as $file)
+            {
+                $gextension = $file->getClientOriginalExtension();
+                $gcheck = in_array($gextension ,$allowedfileExtion);
+                if($gcheck)
+                {
+                    $gfileName = $current_timestamp ."-" . $counter ."." . $gextension;
+                    $this->GenerateProductsThumbnailImage($file, $gfileName);
+                    array_push($gallery_arr,$gfileName);
+                    $counter = $counter + 1;
+
+                }
+            }
+            $gallery_images = implode(',',$gallery_arr);
+
+        }
+
+        $products->images = $gallery_images;
+        $products->save();
+        return redirect()->route('admin.products')->with('status', 'Products has been added sucessfully');
+
+
+    }
+
+    public function GenerateProductsThumbnailImage($image, $imageName)
+    {
+        $destinationPathThumbnail = public_path('uploads/products/thumbnails');
+        $destinationPath = public_path('uploads/products/');
+        $image= Image::read($image->path());
+
+        $image->cover(540,689, "top");
+        $image->resize(540, 689, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath .'/'. $imageName);
+
+        $image->resize(104, 104, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPathThumbnail .'/'. $imageName);
+        
+    }
+
+    public function products_edit($id)
+    {
+        $products = Product::find($id);
+        $categories = Category::select('id','name')->orderBY('name')->get();
+        return view('admin.products-edit', compact('products','categories'));
+
+    }
+
+    public function products_update(Request $request)
+{
+    $request->validate([
+        'name' =>'required',
+        'slug' =>'required|unique:products,slug,'.$request->id,
+        'short_description' =>'required',
+        'description' =>'required',
+        'regular_price' =>'required',
+        'stock_status' =>'required',
+        'featured' =>'required',
+        'image' =>'mimes:jpg,png,jpeg|max:2048',
+        'category_id' =>'required'
+    ]);
+
+    $products = Product::find($request->id);
+    $products->name = $request->name;
+    $products->slug = Str::slug($request->name);
+    $products->short_description = $request->short_description;
+    $products->description = $request->description;
+    $products->regular_price = $request->regular_price;
+    $products->stock_status = $request->stock_status;
+    $products->featured = $request->featured;
+    $products->category_id = $request->category_id;
+
+    $current_timestamp = Carbon::now()->timestamp;
+
+    // Handle product image
+    if($request->hasFile('image'))
+    {
+        // Delete old image
+        if(File::exists(public_path('uploads/products').'/'.$products->image))
+        {
+            File::delete(public_path('uploads/products').'/'.$products->image);
+        }
+        if(File::exists(public_path('uploads/products/thumbnails').'/'.$products->image))
+        {
+            File::delete(public_path('uploads/products/thumbnails').'/'.$products->image);
+        }
+
+        // Save new image
+        $image = $request->file('image');
+        $imageName = $current_timestamp . '.' . $image->extension();
+        $this->GenerateProductsThumbnailImage($image, $imageName);
+        $products->image = $imageName; 
+    }
+
+    $products->save();
+    return redirect()->route('admin.products')->with('status', 'Product has been updated successfully!');
+    }
+
+    public function products_delete($id)
+    {
+        
+            $products = Product::find($id);
+            if(File::exists(public_path('uploads/products').'/'.$products->image))
+                {
+                    File::delete(public_path('uploads/products').'/'.$products->image);
+                }
+            if(File::exists(public_path('uploads/products/thumbnails').'/'.$products->image))
+                {
+                    File::delete(public_path('uploads/products/thumbnails').'/'.$products->image);
+                }
+            $products->delete();
+            return redirect()->route('admin.products')->with('status', 'products has been delete sueccesfully');
+    
+         
+    }
 }
