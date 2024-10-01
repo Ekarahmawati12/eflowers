@@ -2791,8 +2791,13 @@ progress {
 .h-100 {
   height: 100% !important; }
 
-.h-auto {
-  height: auto !important; }
+  .h-auto {
+    height: auto;
+    max-height: 680px; /* Batasi tinggi maksimal */
+    width: 100%; /* Sesuaikan dengan lebar kontainer */
+    margin-top: 20px; /* Jarak antara gambar dan navbar */
+}
+
 
 .mh-100 {
   max-height: 100% !important; }
@@ -8243,7 +8248,7 @@ img {
 .gradient-bg {
  
   min-height: 100vh;
-  background: url(/assets/images/home/demo2/home-bg.jpg) no-repeat;
+  background-color:#f1d7db;
   background-size: auto;
 
  }
