@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Cartcontroller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
@@ -15,6 +16,13 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/shop',[ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/{products_slug}', [ShopController::class, 'products_details'])->name('shop.products.details');
+
+Route::get('/cart',[CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [Cartcontroller::class,'addto_cart'])->name('cart.add');
+Route::put('/cart/increase-quantity/{rowId}',[Cartcontroller::class,'increase_cart_quantity'])->name('cart.qty.increase');
+Route::put('/cart/decrease-quantity/{rowId}',[Cartcontroller::class,'decrease_cart_quantity'])->name('cart.qty.decrease');
+Route::delete('cart/remove/{rowId}', [Cartcontroller::class, 'remove_item'])->name('cart.Item.remove');
+Route::delete('cart/clear', [Cartcontroller::class, 'empty_cart'])->name('cart.empty');
 
 Route::middleware(['auth'])->group(function(){
 
@@ -40,7 +48,6 @@ Route::middleware(['auth', AuthAdmin::class])->group(function(){
     Route::get('/admin/products/{id}/edit', [AdminController::class, 'products_edit'])->name('admin.products.edit');
     Route::put('/admin/products/update', [AdminController::class, 'products_update'])->name('admin.products.update');
     Route::delete('/admin/products/{id}/delete', [AdminController::class, 'products_delete'])->name('admin.products.delete');
-
 
 
 

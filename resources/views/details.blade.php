@@ -64,19 +64,26 @@
             <span class="current-price">{{$products->regular_price}}</span>
           </div>
           <div class="product-single__short-desc">
-            <p>{{$products->short_description}}<p>
+            <p>{{$products->short_description}}</p>
           </div>
-          <form name="addtocart-form" method="post">
+          @if(Cart::instance('cart')->content()->where('id',$products->id)->count()>0)
+            <a href="{{route('cart.index')}}" class="btn btn-warning mb-3">Go to cart</a>
+          @else
+          <form name="addtocart-form" method="post" action="{{route('cart.add')}}">
+            @csrf
             <div class="product-single__addtocart">
-              <div class="qty-control position-relative">
-                <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center">
-                <div class="qty-control__reduce">-</div>
-                <div class="qty-control__increase">+</div>
-              </div><!-- .qty-control -->
-              <button type="submit" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to
-                Cart</button>
+                <div class="qty-control position-relative">
+                    <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center">
+                    <div class="qty-control__reduce">-</div>
+                    <div class="qty-control__increase">+</div>
+                </div><!-- .qty-control -->
+                <input type="hidden" name="id" value="{{ $products->id }}" />
+                <input type="hidden" name="name" value="{{ $products->name }}" />
+                <input type="hidden" name="price" value="{{ $products->regular_price != '' ? $products->regular_price : 0 }}" />        
+                <button type="submit" class="btn btn-primary btn-addtocart" data-aside="cartDrawer">Add to Cart</button>
             </div>
-          </form>
+        </form>
+          @endif
           <div class="product-single__addtolinks">
             <a href="#" class="menu-link menu-link_us-s add-to-wishlist"><svg width="16" height="16" viewBox="0 0 20 20"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -345,10 +352,18 @@
                   <img loading="lazy" src="{{ asset('uploads/products') }}/{{$rproduct->image}}" width="330" height="400"
                        alt="{{$rproduct->name}}" class="pc__img">
               </a>
-              <button
-                  class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                  data-aside="cartDrawer" title="Add To Cart">Add To Cart
-              </button>
+              @if(Cart::instance('cart')->content()->where('id', $rproduct->id)->count() > 0)
+              <a href="{{route('cart.index')}}" class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium btn-warning mb-3">Go to cart</a>
+          @else
+              <form name="addtocart-form" method="post" action="{{route('cart.add')}}">
+                  @csrf
+                  <input type="hidden" name="id" value="{{ $rproduct->id }}" />
+                  <input type="hidden" name="quantity" value="1" />
+                  <input type="hidden" name="name" value="{{ $rproduct->name }}" />
+                  <input type="hidden" name="price" value="{{ $rproduct->regular_price != '' ? $rproduct->regular_price : 0 }}" />  
+                  <button type="submit" class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+              </form>
+          @endif
               </div>
               <div class="pc__info position-relative">
                 <p class="pc__category">{{ $rproduct->category->name }}</p>
@@ -358,14 +373,13 @@
                       {{ $rproduct->regular_price }}
                     </span>
                 </div>
-              
-
                 <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
                   title="Add To Wishlist">
                   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#icon_heart" />
                   </svg>
                 </button>
+
               </div>
             </div>
             @endforeach
@@ -390,6 +404,7 @@
       </div><!-- /.position-relative -->
 
     </section><!-- /.products-carousel container -->
-  </main>
+
     
-@endsection
+</main>
+    @endsection
