@@ -13184,17 +13184,21 @@ textarea.form-control-lg {
       .grid-banner__item_rect_3 .content_abs {
         --content-space: 3.125rem; } }
 
-.products-grid .row {
-  --bs-gutter-x: 0.875rem; }
-  @media (min-width: 768px) {
-    .products-grid .row {
-      --bs-gutter-x: 1.5rem; } }
-  @media (min-width: 992px) {
-    .products-grid .row {
-      --bs-gutter-x: 1.875rem; } }
-.products-grid .nav {
-  margin-left: -var(--bs-gutter-x);
-  margin-right: -var(--bs-gutter-x); }
+./* Mengatur margin untuk menghindari elemen saling menempel */
+.products-grid {
+  margin-top: 20px; /* Tambahkan jarak antara filter dan produk */
+}
+
+.filter-form {
+  margin-bottom: 20px; /* Menambah jarak di bawah form filter */
+}
+
+/* Pastikan produk muncul dalam grid dengan benar */
+.products-grid .product-card-wrapper {
+  display: flex;
+  flex-direction: column; /* Pastikan setiap produk berada di dalam kolom */
+}
+
 
 @media (min-width: 992px) {
   .products-masonry {
