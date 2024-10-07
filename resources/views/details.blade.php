@@ -67,7 +67,7 @@
             <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
           </div>
           <div class="product-single__price">
-            <span class="current-price">{{$products->regular_price}}</span>
+            <span class="current-price">${{$products->regular_price}}</span>
           </div>
           <div class="product-single__short-desc">
             <p>{{$products->short_description}}</p>
@@ -384,7 +384,7 @@
                   <input type="hidden" name="id" value="{{ $rproduct->id }}" />
                   <input type="hidden" name="quantity" value="1" />
                   <input type="hidden" name="name" value="{{ $rproduct->name }}" />
-                  <input type="hidden" name="price" value="{{ $rproduct->regular_price != '' ? $rproduct->regular_price : 0 }}" />  
+                  <input type="hidden" name="price" value="${{ $rproduct->regular_price != '' ? $rproduct->regular_price : 0 }}" />  
                   <button type="submit" class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
               </form>
           @endif
@@ -394,7 +394,7 @@
                 <h6 class="pc__title"><a href="{{ route('shop.products.details', ['products_slug' => $rproduct->slug]) }}">{{ $rproduct->name }}</a></h6>
                 <div class="product-card__price d-flex">
                     <span class="money price">
-                      {{ $rproduct->regular_price }}
+                      ${{ $rproduct->regular_price }}
                     </span>
                 </div>
                 <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"

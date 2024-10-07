@@ -80,7 +80,7 @@
                             </a>
                         </h6>
                         <div class="product-card__price d-flex">
-                            <span class="money price">{{ $product->regular_price }}</span>
+                            <span class="money price">${{ $product->regular_price }}</span>
                         </div>
                         <div class="product-card__review d-flex align-items-center">
                             <div class="reviews-group d-flex">
