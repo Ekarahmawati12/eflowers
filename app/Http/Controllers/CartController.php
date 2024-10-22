@@ -16,7 +16,7 @@ class CartController extends Controller
     public function index()
     {
         $items = Cart::instance('cart')->content();
-        return view('cart', compact('items'));
+        return view('cart', compact('items'))->with('page_class', 'cart-background');
     }
 
     public function addto_cart(Request $request)
@@ -72,7 +72,7 @@ class CartController extends Controller
     $address = Address::where('user_id', Auth::user()->id)
                       ->where('isdefault', 1)
                       ->first();
-    return view('checkout', compact('address'));
+    return view('checkout', compact('address'))->with('page_class', 'co-background');
     }
     public function placean_order(Request $request)
     {
@@ -180,7 +180,7 @@ public function order_confirmation()
     if(Session::has('order_id'))
     {
         $order = Order::find(Session::get('order_id'));
-    return view('order_confirmation', compact('order'));
+    return view('order_confirmation', compact('order'))->with('page_class', 'orderconfirm-background');
 
     }
     return redirect()->route('cart.index');

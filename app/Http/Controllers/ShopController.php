@@ -30,7 +30,8 @@ class ShopController extends Controller
     // Ambil semua kategori untuk dropdown filter
     $categories = Category::all();
 
-    return view('shop', compact('products', 'categories', 'category'));
+    return view('shop', compact('products', 'categories', 'category'))->with('page_class', 'shop-background');
+
 }
 
 
@@ -39,6 +40,6 @@ class ShopController extends Controller
     {
         $products = Product::where('slug', $products_slug)->first();
         $rproducts = Product::where('slug','<>' ,$products_slug)->get()->take(8);
-        return view('details',compact('products','rproducts'));
+        return view('details',compact('products','rproducts'))->with('page_class', 'details-background');
     }
 }

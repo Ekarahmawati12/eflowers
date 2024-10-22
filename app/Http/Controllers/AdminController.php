@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Models\Transaction;
 use App\Models\Product;
 use App\Models\Slide;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -383,7 +384,6 @@ class AdminController extends Controller
             'subtitle'=> 'required',
             'link'=> 'required',
             'status'=> 'required',
-            'image'=> 'required|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         $slide = new Slide();
@@ -393,11 +393,7 @@ class AdminController extends Controller
         $slide->link = $request->link;
         $slide->status = $request->status;
 
-        $image = $request->file('image');
-        $file_extention =$request->file('image')->extension();
-        $file_name = Carbon::now()->timestamp . '.' . $file_extention;
-        $this->GenerateSlideThumbailsImage($image,$file_name);
-        $slide->image = $file_name;
+       
         $slide->save();
         return redirect()->route('admin.slides')->with("status", "slide added succesfully!");
 
@@ -467,6 +463,28 @@ class AdminController extends Controller
 
         $slide->delete();
         return redirect()->route('admin.slides')->with("status", "slide deleted succesfully!");
+    }
+
+    public function contacts()
+    {
+        $contacts = Contact::orderBy('created_at','DESC')->paginate(10);
+        return view('admin.contacts', compact('contacts'))->with('page_class', 'shop-background');
+
+    }
+
+    public function contact_delete($id)
+    {
+        $contact = Contact::find($id);
+        $contact->delete();
+        return redirect()->route('admin.contacts')->with("status","Contact deleted successfully!");
+
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $results = Product::where('name','LIKE',"%{$query}%")->get()->take(8);
+        return response()->json($results);
     }
    
 }

@@ -1,9 +1,55 @@
 @extends('layouts.app')
 @section('content')
 <main>
+<style>
+.content {
+    text-align: left; /* Pastikan teks diatur ke kiri */
+    max-width: 600px; /* Atur lebar maksimum konten */
+    margin: 0 auto; /* Pusatkan konten di halaman */
+    padding: 20px; /* Tambahkan padding jika diperlukan */
+}
+
+h3 {
+    margin-bottom: 10px; /* Ruang bawah untuk judul */
+}
+
+span {
+    display: block; /* Pastikan span tampil sebagai blok agar berada di baris baru */
+    margin-bottom: 10px; /* Ruang bawah untuk span */
+    font-weight: bold; /* Atur ketebalan font jika perlu */
+}
+
+p.fw-bold {
+    margin: 20px 0; /* Hapus auto untuk margin kiri dan kanan */
+    padding: 10px; /* Ruang di dalam elemen */
+}
+.footer {
+    padding: 20px 0; /* Atur padding footer */
+}
+
+.footer-column {
+    margin-bottom: 10px; /* Jarak antar kolom */
+}
+
+.sub-menu__list {
+    padding-left: 0;
+    margin-top: 5px; /* Jarak atas */
+    margin-bottom: 5px; /* Jarak bawah */
+}
+
+.product-item {
+    margin-bottom: 10px; /* Jarak antar produk */
+}
+.category-carousel {
+    margin-bottom: 0; /* Hapus margin bawah yang berlebihan */
+    padding-bottom: 50px; /* Tambahkan padding bawah untuk membuat konten lebih panjang */
+}
+
+
+ </style>   
 
     <section class="swiper-container js-swiper-slider swiper-number-pagination slideshow"
-        data-settings='{
+    data-settings='{
     "autoplay": {
       "delay": 5000
     },
@@ -11,37 +57,33 @@
     "effect": "fade",
     "loop": true
   }'>
-        <div class="swiper-wrapper">
-            @foreach ($slides as $slide)
-                
-            <div class="swiper-slide">
-                <div class="overflow-hidden position-relative h-100">
-                    <div class="slideshow-character position-absolute bottom-0 pos_right-center">
-                        <img loading="lazy" src="{{asset('uploads/slides')}}/{{$slide->image}}" width="542" height="733"
-                          alt="Woman Fashion 1"
-                          class="slideshow-character__img animate animate_fade animate_btt animate_delay-9 w-auto h-auto" />
-                        
-                        <div class="character_markup type2">
-                            <p class="text-uppercase font-sofia mark-grey-color animate animate_fade animate_btt animate_delay-10 mb-0">{{$slide->tagline}}</p>
-                        </div>
-                    </div>
-                    <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
-                        <h6 class="text_dash text-uppercase fs-base fw-medium animate animate_fade animate_btt animate_delay-3"> New Arrivals</h6>
-                        <h2 class="h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5">{{$slide->title}}</h2>
-                        <h2 class="h1 fw-bold animate animate_fade animate_btt animate_delay-5">{{$slide->subtitle}}</h2>
-                        <a href="{{$slide->link}}" class="btn-link btn-link_lg default-underline fw-medium animate animate_fade animate_btt animate_delay-7">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
+  
+  <div class="swiper-wrapper">
+    <!-- Slider untuk konten -->
+    <div class="swiper-slide">
+      <div class="overflow-hidden position-relative h-100">
+        <div class="slideshow-character position-absolute bottom-0 pos_right-center">
+         
         </div>
+        <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
+          <h6 class="text_dash text-uppercase fs-base fw-medium animate animate_fade animate_btt animate_delay-3">Eflowers</h6>
+          <h2 class="h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5">Fresh & Beautiful Blooms</h2>
+          <p class="fw-bold animate animate_fade animate_btt animate_delay-5" style="line-height: 1.2;">
+            At eflowers, we deliver the freshest flowers, perfect for any occasion.
+         </p>
+         <p class="fw-bold animate animate_fade animate_btt animate_delay-5" style="line-height: 1.2;">
+            Handpicked to showcase nature’s beauty, our arrangements add elegance and charm to your day.
+         </p>
+         <p class="fw-bold animate animate_fade animate_btt animate_delay-5" style="line-height: 1.2;">
+            Experience nature’s beauty, delivered right to your door.
+         </p>
+         
+            <a href="{{route('shop.index')}}" class="btn-link btn-link_lg default-underline fw-medium animate animate_fade animate_btt animate_delay-7">Shop Now</a>
+        </div>
+      </div>
+    </div>
+</section>
 
-        <div class="container">
-            <div
-                class="slideshow-pagination slideshow-number-pagination d-flex align-items-center position-absolute bottom-0 mb-5">
-            </div>
-        </div>
-    </section>
     <div class="container mw-1620 bg-white border-radius-10">
         <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
         <section class="category-carousel container">
@@ -139,18 +181,18 @@
                     </div>
                 </div>
                 @endforeach
+     </div>
+     <div class="text-center ">
+        <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="#"></a>
+      </div>
+    </section>
+    <div class="mb-0 pt-0 pb-0"></div>
 
-                
-            </div><!-- /.row -->
 
-            <div class="text-center mt-2">
-                <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="#">Load
-                    More</a>
-            </div>
-        </section>
-    </div>
+  </div>
 
-    <div class="mb-3 mb-xl-5 pt-1 pb-4"></div>
 
+</section>
+</div>
 </main>
 @endsection

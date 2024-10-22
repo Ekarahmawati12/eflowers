@@ -2,8 +2,11 @@
 @section('content')
 
 <style>
-    .field-heart{
-        color:red;
+    .field-heart {
+        color: red;
+    }
+    .pc__img {
+        border-radius: 10px; /* Ubah nilai ini sesuai keinginan */
     }
 </style>
 
@@ -33,10 +36,8 @@
             </div>
         </form>
 
-        
-
         <!-- Grid Produk -->
-        <div class="products-grid row row-cols-2 row-cols-md-3" id="products-grid">
+        <div class="products-grid row row-cols-2 row-cols-md-4" id="products-grid">
             @foreach ($products as $product)
             <div class="product-card-wrapper">
                 <div class="product-card mb-3 mb-md-4 mb-xxl-5">

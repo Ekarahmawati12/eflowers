@@ -1,30 +1,32 @@
 :root {
-  --Main: #2275fc;
+  --Main: #eb66af;
   --White: #fff;
   --Black: #111;
   --Heading: #111;
   --Body-Text: #575864;
   --22-c-55-e: #22C55E;
   --Style:#FF5200;
-  --Palette-Green-500: #22C55E;
-  --Palette-Blue-Gray-300: #CBD5E1;
-  --Palette-Blue-Gray-200: #E2E8F0;
-  --Palette-Blue-300: #93C5FD;
-  --Palette-Blue-200: #BFDBFE;
-  --Palette-Orange-400: #FB923C;
-  --Palette-Red-400: #F87171;
-  --Palette-Red-500: #EF4444;
-  --Input:#ECF0F4;
-  --Icon: #CBD5E1;
-  --Note: #95989D;
-  --Text-Holder: #858B93;
-  --08091-b: #08091B;
-  --Stroke: #ECF0F4;
-  --bg-table: #f6f8fbcc;
-  --bg-table-1: #F7FAFC;
-  --backdrop: #F2F7FB;
-  --hv-item: #EDF1F5;
-}
+    --Palette-Green-500: #22C55E;
+    --Palette-Blue-Gray-300: #eb66af; /* Ganti pink dengan warna baru */
+    --Palette-Blue-Gray-200: #eb66af; /* Ganti pink dengan warna baru */
+    --Palette-Blue-300: #eb66af; /* Ganti pink dengan warna baru */
+    --Palette-Blue-200: #eb66af; /* Ganti pink dengan warna baru */
+    --Palette-Orange-400: #FB923C;
+    --Palette-Red-400: #F87171;
+    --Palette-Red-500: #EF4444;
+    --Input: #eb66af;
+    --Icon: #eb66af;
+    --Note: #95989D;
+    --Text-Holder: #eb66af; /* Ganti pink dengan warna baru */
+    --08091-b: #08091B;
+    --Stroke: #ECF0F4;
+    --bg-table: #eb66af; /* Ganti pink dengan warna baru */
+    --bg-table-1: #F7FAFC;
+    --backdrop: #eb66af;
+    --hv-item: #EDF1F5; 
+  }
+  
+
 
 /**
   * Name: Remos eCommerce Admin Dashboard HTML Template
@@ -1901,7 +1903,7 @@ a:hover, a:focus {
   cursor: pointer;
 }
 .list-icon-function .item.eye {
-  color: #2377FC;
+  color: #f073d5;
 }
 .list-icon-function .item.edit {
   color: #22C55E;
@@ -3194,7 +3196,7 @@ select.h40 {
   min-height: 100vh;
   padding-top: 80px;
   padding-left: 280px;
-  background: #F2F7FB;
+  background: #fce8f7;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
