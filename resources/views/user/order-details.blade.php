@@ -237,7 +237,6 @@
                         <div class="wg-filter flex-grow">
                             <h5>Transaction</h5>
                         </div>
-                        <a class="tf-button style-1 w208" href="{{route('admin.orders')}}">Back</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered">

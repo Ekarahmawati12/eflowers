@@ -46,7 +46,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Phonr</th>
+                            <th>Phone</th>
                             <th>Email</th>
                             <th>Message</th>
                             <th>Date</th>

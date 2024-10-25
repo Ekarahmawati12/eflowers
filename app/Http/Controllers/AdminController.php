@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use App\Models\Product;
 use App\Models\Slide;
 use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -486,5 +487,14 @@ class AdminController extends Controller
         $results = Product::where('name','LIKE',"%{$query}%")->get()->take(8);
         return response()->json($results);
     }
+
+    public function users()
+    {
+        // Ambil hanya pengguna yang memiliki utype 'ADM'
+        $users = User::where('utype', 'ADM')->paginate(10);
+        return view('admin.users', compact('users'));
+    }
+    
+
    
 }

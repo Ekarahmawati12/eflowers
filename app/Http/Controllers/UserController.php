@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Transaction;
+use App\Models\Wishlist;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-
+use Surfsidemedia\Shoppingcart\Facades\Cart;
 
 class UserController extends Controller
 {
@@ -48,4 +50,12 @@ class UserController extends Controller
         return back()->with('status',"Oreder has been cancelled Successfully!!");
         
     }
+
+    public function addresses()
+    {
+        // Mengambil alamat yang terkait dengan pengguna yang sedang login
+        $addresses =  Address::where('user_id',Auth::user()->id)->orderBy('created_at','DESC')->paginate('10');
+        return view('user.addresses', compact('addresses'));
+    }
+    
 }
