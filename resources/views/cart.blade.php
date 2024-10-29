@@ -57,7 +57,7 @@
                   </div>
                 </td>
                 <td>
-                  <span class="shopping-cart__product-price">${{$item->price}}</span>
+                  <span class="shopping-cart__product-price">Rp{{$item->price}}</span>
                 </td>
                 <td>
                   <div class="qty-control position-relative">
@@ -76,7 +76,7 @@
                   </div>
                 </td>
                 <td>
-                    <span class="shopping-cart__subtotal">${{$item->subTotal()}}</span>
+                    <span class="shopping-cart__subtotal">Rp{{$item->subTotal()}}</span>
 
                 </td>
                 <td>
@@ -111,7 +111,7 @@
                 <tbody>
                   <tr>
                     <th>Subtotal</th>
-                    <td>${{Cart::instance('cart')->subtotal()}}</td>
+                    <td>Rp{{Cart::instance('cart')->subtotal()}}</td>
                   </tr>
                   <tr>
                     <th>Shipping</th>
@@ -120,11 +120,11 @@
                   </tr>
                   <tr>
                     <th>VAT</th>
-                    <td>${{Cart::instance('cart')->tax()}}</td>
+                    <td>Rp{{Cart::instance('cart')->tax()}}</td>
                   </tr>
                   <tr>
                     <th>Total</th>
-                    <td>${{Cart::instance('cart')->total()}}</td>
+                    <td>Rp{{Cart::instance('cart')->total()}}</td>
                   </tr>
                 </tbody>
               </table>

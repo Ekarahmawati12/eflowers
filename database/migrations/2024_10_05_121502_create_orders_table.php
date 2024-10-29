@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->decimal('subtotal');
-            $table->decimal('tax');
-            $table->decimal('total');
+            $table->decimal('subtotal', 12, 2);
+            $table->decimal('tax', 12, 2);
+            $table->decimal('total', 12, 2);
             $table->string('name');
             $table->string('phone');
             $table->string('locality');

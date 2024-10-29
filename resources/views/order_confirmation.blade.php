@@ -50,7 +50,7 @@
                 </div>
                 <div class="order-info__item">
                     <label>Total</label>
-                    <span>${{$order->total}}</span>
+                    <span>Rp{{ number_format($order->total, 2, ',', '.') }}</span>
                 </div>
                 <div class="order-info__item">
                     <label>Payment Method</label>
@@ -74,7 +74,7 @@
                                     {{$item->product->name}} x {{$item->quantity}}
                                 </td>
                                 <td class="text-right">
-                                    ${{$item->price}}
+                                    Rp{{ number_format($item->price, 2, ',', '.') }}
                                 </td>
                             </tr>
                             @endforeach
@@ -84,7 +84,7 @@
                         <tbody>
                             <tr>
                                 <th>SUBTOTAL</th>
-                                <td class="text-right">${{$order->subtotal}}</td>
+                                <td class="text-right">Rp{{ number_format($order->subtotal, 2, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <th>SHIPPING</th>
@@ -92,11 +92,13 @@
                             </tr>
                             <tr>
                                 <th>VAT</th>
-                                <td class="text-right">${{$order->tax}}</td>
+                                <td class="text-right">Rp{{ number_format($order->tax, 2, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <th>TOTAL</th>
-                                <td class="text-right">${{$order->total}}</td>
+                                <td class="text-right">Rp{{ number_format($order->total, 2, ',', '.') }}</td>
+                            </tr>
+                            
                             </tr>
                         </tbody>
                     </table>

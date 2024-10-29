@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique(); // Slug untuk URL
             $table->string('short_description')->nullable(); // Deskripsi singkat bunga
             $table->text('description'); // Deskripsi detail tentang bunga
-            $table->decimal('regular_price', 8, 2); // Harga bunga
+            $table->decimal('regular_price', 12, 2); // Harga bunga
             $table->enum('stock_status', ['instock', 'outofstock']); // Status stok (tersedia atau tidak)
             $table->boolean('featured')->default(false); // Produk unggulan
             $table->unsignedInteger('quantity')->default(10); // Jumlah stok bunga

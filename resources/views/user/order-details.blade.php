@@ -191,7 +191,7 @@
                                             </a>
                                         </div>
                                     </td>
-                                    <td class="text-center">${{$item->price}}</td>
+                                    <td class="text-center">Rp{{ number_format($item->price, 2, ',', '.') }}</td>
                                     <td class="text-center">{{$item->quantity}}</td>
                                     <td class="text-center">{{$item->product->category->name}}</td>
                                     <td class="text-center">{{$item->options}}</td>
@@ -251,9 +251,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>${{$order->subtotal}}</td>
-                                    <td>${{$order->tax}}</td>
-                                    <td>${{$order->total}}</td>
+                                    <td>Rp{{ number_format($order->subtotal, 2, ',', '.') }}</td>
+                                    <td>Rp{{ number_format($order->tax, 2, ',', '.') }}</td>
+                                    <td>Rp{{ number_format($order->total, 2, ',', '.') }}</td>
+
                                     <td>{{$transaction->mode}}</td>
                                     <td>
                                         @if($transaction->status == 'approved')

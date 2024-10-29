@@ -6,6 +6,23 @@
     
     color:red;
   }
+  .money {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold; 
+    color: #353333;
+    margin-right: 5px; 
+}
+
+
+.price {
+    font-family: 'Merriweather', serif; /* Ganti dengan font yang diinginkan */
+    font-size: 16px; /* Ukuran font untuk harga */
+    line-height: 20px; /* Tinggi garis untuk harga */
+    font-weight: 700; /* Berat font untuk harga */
+    color: #353333; /* Warna teks untuk harga */
+}
 </style>
 <main class="pt-90">
     <div class="mb-md-1 pb-md-3"></div>
@@ -66,9 +83,10 @@
             </div>
             <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
           </div>
-          <div class="product-single__price">
-            <span class="current-price">${{$products->regular_price}}</span>
-          </div>
+          <div class="product-card__price d-flex">
+            <span class="money">Rp</span>
+            <span class="price">{{ number_format($products->regular_price, 0, ',', '.') }}</span>
+        </div>
           <div class="product-single__short-desc">
             <p>{{$products->short_description}}</p>
           </div>
@@ -233,10 +251,9 @@
                 <p class="pc__category">{{ $rproduct->category->name }}</p>
                 <h6 class="pc__title"><a href="{{ route('shop.products.details', ['products_slug' => $rproduct->slug]) }}">{{ $rproduct->name }}</a></h6>
                 <div class="product-card__price d-flex">
-                    <span class="money price">
-                      ${{ $rproduct->regular_price }}
-                    </span>
-                </div>
+                  <span class="money">Rp</span>
+                  <span class="price">{{ number_format($products->regular_price, 0, ',', '.') }}</span>
+              </div>
                 <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
                   title="Add To Wishlist">
                   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

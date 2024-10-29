@@ -8,6 +8,24 @@
     .pc__img {
         border-radius: 10px; /* Ubah nilai ini sesuai keinginan */
     }
+    .money {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold; 
+    color: #353333;
+    margin-right: 5px; 
+}
+
+
+.price {
+    font-family: 'Merriweather', serif; /* Ganti dengan font yang diinginkan */
+    font-size: 16px; /* Ukuran font untuk harga */
+    line-height: 20px; /* Tinggi garis untuk harga */
+    font-weight: 700; /* Berat font untuk harga */
+    color: #353333; /* Warna teks untuk harga */
+}
+
 </style>
 
 <main class="pt-90">
@@ -81,7 +99,8 @@
                             </a>
                         </h6>
                         <div class="product-card__price d-flex">
-                            <span class="money price">${{ $product->regular_price }}</span>
+                            <span class="money">Rp</span>
+                            <span class="price">{{ number_format($product->regular_price, 0, ',', '.') }}</span>
                         </div>
                         <div class="product-card__review d-flex align-items-center">
                             <div class="reviews-group d-flex">

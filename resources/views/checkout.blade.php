@@ -135,7 +135,7 @@
                                             {{$item->name}} x {{$item->qty}}
                                         </td>
                                         <td align="right">
-                                            ${{$item->subtotal()}}
+                                            Rp{{$item->subtotal()}}
                                         </td>
                                     </tr>
                                     @endforeach
@@ -145,7 +145,7 @@
                                 <tbody>
                                     <tr>
                                         <th>SUBTOTAL</th>
-                                        <td align="right">${{Cart::instance('cart')->subtotal()}}</td>
+                                        <td align="right">Rp{{Cart::instance('cart')->subtotal()}}</td>
                                     </tr>
                                     <tr>
                                         <th>SHIPPING</th>
@@ -153,11 +153,11 @@
                                     </tr>
                                     <tr>
                                         <th>VAT</th>
-                                        <td align="right">${{Cart::instance('cart')->tax()}}</td>
+                                        <td align="right">Rp{{Cart::instance('cart')->tax()}}</td>
                                     </tr>
                                     <tr>
                                         <th>TOTAL</th>
-                                        <td align="right">${{Cart::instance('cart')->total()}}</td>
+                                        <td align="right">Rp{{Cart::instance('cart')->total()}}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -30,7 +30,8 @@
                                 </div>
                                 <div>
                                     <div class="body-text mb-2">Total Amount</div>
-                                    <h4>{{$dashboardDatas[0]->TotalAmount}}</h4>
+                                    <h4>Rp{{ number_format($dashboardDatas[0]->TotalAmount, 2, ',', '.') }}</h4>
+
                                 </div>
                             </div>
                         </div>
@@ -60,7 +61,8 @@
                                 </div>
                                 <div>
                                     <div class="body-text mb-2">Pending Orders Amount</div>
-                                    <h4>{{$dashboardDatas[0]->TotalOrderedAmount}}</h4>
+                                    <h4>Rp{{ number_format($dashboardDatas[0]->TotalOrderedAmount, 2, ',', '.') }}</h4>
+
                                 </div>
                             </div>
                         </div>
@@ -93,7 +95,8 @@
                                 </div>
                                 <div>
                                     <div class="body-text mb-2">Delivered Orders Amount</div>
-                                    <h4>{{$dashboardDatas[0]->TotalDeliveredAmount}}</h4>
+                                    <h4>Rp{{ number_format($dashboardDatas[0]->TotalDeliveredAmount, 2, ',', '.') }}</h4>
+
                                 </div>
                             </div>
                         </div>
@@ -123,7 +126,8 @@
                                 </div>
                                 <div>
                                     <div class="body-text mb-2">Canceled Orders Amount</div>
-                                    <h4>{{$dashboardDatas[0]->TotalCanceledAmount}}</h4>
+                                    <h4>Rp{{ number_format($dashboardDatas[0]->TotalCanceledAmount, 2, ',', '.') }}</h4>
+
                                 </div>
                             </div>
                         </div>
@@ -146,7 +150,8 @@
                             </div>
                         </div>
                         <div class="flex items-center gap10">
-                            <h4>${{$TotalAmount}}</h4>
+                            <h4>Rp{{ number_format($TotalAmount, 2, ',', '.') }}</h4>
+
                         </div>
                     </div>
                     <div>
@@ -157,7 +162,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap10">
-                            <h4>${{$TotalOrderedAmount}}</h4>
+                            <h4>Rp{{ number_format($TotalOrderedAmount, 2, ',', '.') }}</h4>
                         </div>
                     </div> 
                     <div>
@@ -168,7 +173,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap10">
-                            <h4>${{$TotalDeliveredAmount}}</h4>
+                            <h4>Rp{{ number_format($TotalDeliveredAmount, 2, ',', '.') }}</h4>
                         </div>
                     </div>
                     <div>
@@ -179,7 +184,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap10">
-                            <h4>${{$TotalCanceledAmount}}</h4>
+                            <h4>Rp{{number_format($TotalCanceledAmount, 2, ',', '.')}}</h4>
                         </div>
                     </div>
                 </div>
@@ -223,9 +228,9 @@
                                     <td class="text-center">{{$order->id}}</td>
                                     <td class="text-center">{{$order->name}}</td>
                                     <td class="text-center">{{$order->phone}}</td>
-                                    <td class="text-center">${{$order->subtotal}}</td>
-                                    <td class="text-center">${{$order->tax}}</td>
-                                    <td class="text-center">${{$order->total}}</td>
+                                    <td class="text-center">Rp{{ number_format($order->subtotal, 2, ',', '.') }}</td>
+                                    <td class="text-center">Rp{{ number_format($order->tax, 2, ',', '.') }}</td>
+                                    <td class="text-center">Rp{{ number_format($order->total, 2, ',', '.') }}</td>                                    
                                     <td class="text-center">
                                         @if($order->status == 'delivered') 
                                         <span class="badge bg-success">Delivered</span>

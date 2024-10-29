@@ -110,9 +110,9 @@ class CartController extends Controller
 
         $order = new Order();
         $order->user_id = $user_id;
-        $order->subtotal = Session::get('checkout')['subtotal'];
-        $order->tax = Session::get('checkout')['tax'];
-        $order->total = Session::get('checkout')['total'];
+        $order->subtotal = str_replace(',', '', Session::get('checkout')['subtotal']);
+        $order->tax = str_replace(',', '', Session::get('checkout')['tax']);
+        $order->total = str_replace(',', '', Session::get('checkout')['total']);
         $order->name = $address->name;
         $order->phone = $address->phone;
         $order->locality = $address->locality;
@@ -123,7 +123,7 @@ class CartController extends Controller
         $order->landmark = $address->landmark;
         $order->zip = $address->zip;
         $order->save();
-
+        
         foreach(Cart::instance('cart')->content() as $item)
         {
             $orderItem = new OrderItem();

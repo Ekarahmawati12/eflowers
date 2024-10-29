@@ -44,7 +44,23 @@ p.fw-bold {
     margin-bottom: 0; /* Hapus margin bawah yang berlebihan */
     padding-bottom: 50px; /* Tambahkan padding bawah untuk membuat konten lebih panjang */
 }
+.money {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold; 
+    color: #353333;
+    margin-right: 5px; 
+}
 
+
+.price {
+    font-family: 'Merriweather', serif; /* Ganti dengan font yang diinginkan */
+    font-size: 16px; /* Ukuran font untuk harga */
+    line-height: 20px; /* Tinggi garis untuk harga */
+    font-weight: 700; /* Berat font untuk harga */
+    color: #353333; /* Warna teks untuk harga */
+}
 
  </style>   
 
@@ -175,7 +191,8 @@ p.fw-bold {
                         <div class="pc__info position-relative">
                             <h6 class="pc__title"><a href="{{route('shop.products.details',['products_slug'=>$fproduct->slug])}}">{{$fproduct->name}}</a></h6>
                             <div class="product-card__price d-flex align-items-center">
-                                <span class="money price text-secondary">${{$fproduct->regular_price}}</span>
+                                <span class="money">Rp</span>
+                                <span class="price">{{ number_format($fproduct->regular_price, 0, ',', '.') }}</span>
                             </div>
                         </div>
                     </div>
